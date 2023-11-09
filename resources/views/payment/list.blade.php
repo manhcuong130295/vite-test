@@ -1,7 +1,7 @@
 @extends('layouts/app')
 @section('title', 'Pricing')
 @section('links-css')
-  <link rel="stylesheet" href="{{ asset('assets/pricing/assets/css/style.css') }}" />
+  <link rel="stylesheet" href="{{ asset(mix('assets/pricing/assets/css/style.css')) }}" />
   <style></style>
 @endsection
 @section('content')
@@ -31,7 +31,7 @@
               </div>
               <span class="fw-bolder text-uppercase fs-2 d-block mb-7">{{ $sub->type }}</span>
               <div class="my-4">
-                <img src="{{ asset($sub->image_path) }}" alt="" class="img-fluid" width="80"
+                <img src="{{ asset(mix($sub->image_path)) }}" alt="" class="img-fluid" width="80"
                   height="80">
               </div>
               @if (!empty($sub->price))

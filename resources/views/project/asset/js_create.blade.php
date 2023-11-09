@@ -137,10 +137,6 @@
     $temp.remove();
   }
 
-  function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
   function copyWebhookUrlToClipboard(element) {
     var $temp = $("<input>");
     $("body").append($temp);
