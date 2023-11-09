@@ -12,3 +12,5 @@ public/mix-manifest.json
 .idea
 composer.lock
 public/build/*
+
+/public/build
