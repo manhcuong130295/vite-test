@@ -1,0 +1,14 @@
+/node_modules
+/public/storage
+/storage/*.key
+/vendor
+.env
+.phpunit.result.cache
+/db_mysql
+public/assets
+public/css
+public/js
+public/mix-manifest.json
+.idea
+composer.lock
+public/build/*

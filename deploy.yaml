@@ -1,0 +1,42 @@
+import:
+  - recipe/laravel.php
+  - contrib/php-fpm.php
+
+config:
+  application: 'tomogpt'
+  repository: 'git@github.com:TOMOSIA-VIETNAM/tomogpt.git'
+  php_fpm_version: '8.1'
+  keep_releases: 5
+  shared_files: ['.env']
+
+hosts:
+  stg:
+    hostname: 35.72.129.50
+    remote_user: ubuntu
+    deploy_path: '/home/ubuntu/tomogpt'
+    forward_agent: true
+    identity_file: '~/.ssh/tomogpt.pem'
+
+tasks:
+  deploy:
+    - deploy:prepare
+    - deploy:vendors
+    - artisan:storage:link
+    - artisan:view:cache
+    - artisan:config:cache
+    - artisan:config:clear
+    - artisan:migrate
+    - npm:install
+    - npm:build
+    - deploy:publish
+    - php-fpm:reload
+    - queue:restart
+    - deploy:unlock
+  npm:install:
+    - run: 'cd {{release_path}} && source $HOME/.nvm/nvm.sh && npm install'
+  npm:build:
+    - run: 'cd {{release_path}} && source $HOME/.nvm/nvm.sh && npm run dev'
+  queue:restart:
+    - run: 'sudo systemctl restart laravel-worker'
+after:
+  deploy:failed: deploy:unlock

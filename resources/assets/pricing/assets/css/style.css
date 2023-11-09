@@ -1,0 +1,12 @@
+.card-img-top {
+    object-fit: convert;
+    width: 140px;
+    height: 140px;
+}
+.sub-active {
+    background-color: rgba(93,135,255,0.25);
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.9;
+ }

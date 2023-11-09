@@ -1,0 +1,20 @@
+.card-sub-menu {
+    margin-bottom: 5px !important;
+    background: linear-gradient(to left, #fff 50%, lightblue 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+}
+
+.card-sub-menu:hover {
+    background-position: left;
+}
+
+.card-sub-body {
+    padding: 10px 10px !important;
+}
+
+#upgrade-btn:hover{
+    #crown {
+        color: white !important;
+    }   
+}

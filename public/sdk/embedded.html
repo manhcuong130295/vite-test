@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Widget - by MGPT</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+      .typing {
+        position: relative;
+      }
+      .typing span {
+        content: '';
+        animation: blink 1.5s infinite;
+        animation-fill-mode: both;
+        height: 5px;
+        width: 5px;
+        background: #3b5998;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+      }
+      .typing span:nth-child(2) {
+        animation-delay: 0.2s;
+        margin-left: 15px;
+      }
+      .typing span:nth-child(3) {
+        animation-delay: 0.4s;
+        margin-left: 30px;
+      }
+      @keyframes blink {
+        0% {
+            opacity: 0.1;
+        }
+        20% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0.1;
+        }
+      }
+      #chat-popup {
+        height: 100%;
+        transition: all 0.3s;
+        overflow: hidden;
+        width: 100%;
+      }
+      .bg-zinc-100 {
+        --tw-bg-opacity: 1;
+        background-color: rgb(243 244 246/var(--tw-bg-opacity));
+      }
+      .bg-zinc-100:hover {
+        --tw-bg-opacity: 1;
+        background-color: rgba(229,231,235,var(--tw-bg-opacity));
+      }
+    </style>
+</head>
+<body>
+  <div id="chat-popup" class="absolute right-0 w-96 bg-white shadow-md flex flex-col transition-all text-sm">
+    <div id="chat-header" class="flex items-center p-4 bg-gray-800 text-white">
+      <img id="chatbot_avatar" src="" width="35" height="35" decoding="async" data-nimg="1" class="rounded-circle mx-2" loading="lazy" alt="profile picture" onerror="this.style.display='none';">
+      <h3 id="chatbot_name" class="m-0 text-lg">MGPT AI assistant</h3>
+    </div>
+    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto">
+        <div class="flex mb-3">
+            <div id="chat_initial" class="reply text-black rounded-lg py-2 px-4 max-w-[70%] typing bg-gray-200">
+                I am a AI Assistant, Ask me anything, I will help answer your questions based on my understanding.
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div id="suggest_mess" class="p-4 flex overflow-x-auto"></div>
+        </div>
+    </div>
+    <div id="chat-input-container" class="p-2 border-t border-gray-200">
+      <div class="flex space-x-4 items-center">
+        <input type="text" id="chat-input" class="flex-1 rounded-md px-4 py-2 outline-none w-3/4" placeholder="Type your message...">
+        <button id="chat-submit" class="bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer">
+          <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="flex text-center text-xs pt-2">
+        <span class="flex-1">Prompted by <a id="current_url" href="https://tomosia.com" target="_blank" class="text-indigo-600">MGPT</a></span>
+      </div>
+    </div>
+  </div>
+  <script src = "./chatWidget.js"></script>
+</html>
+
